@@ -1,0 +1,143 @@
+<div class="container">
+		<div class="row" id="heading">
+			<div class="col-xs-12 text-center">
+				<header>
+					<h1>Degree Planner</h1>
+					<h3>Enter your courses, then click registered or completed as you take courses.</h3>
+				</header>
+			</div>
+			<div class="col-xs-12 text-center">
+				<div>
+					<form class="courseEntryForm" id="courseEntryForm" action="/" method="POST">
+						<div class="form-group">
+							<input type="textbox" id="courseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
+							<input type="textbox" id="courseSemester" name="semester" placeholder="Ex. Spring">
+							<input type="textbox" id="courseYear" name="year" placeholder="Ex. 2018">
+						</div>
+						<button class="btn btn-lg" id="addCourse" type="submit">Add Course</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div id="plannedDiv">
+					<div class="category categoryPlanned">
+						<img class="clipboardPic" src="assets/img/clipboard-yellow.png">
+						<span >Planned</span>
+					</div>
+					{{#each courses}}
+						{{#if this.planned}}
+							<div class="plannedCourses">
+								<div class="row" id="plannedRow">
+									<div class="col-sm-12" id="courseLabelDiv">
+										<div class="row classRow courseInfo">
+											<div class="col-sm-12">
+												<p class="courseName plannedCourseName">{{this.course_name}}</p>
+											</div>
+										</div>
+										<div class="row classRow">
+											<div class="col-sm-6">
+												<form action="/status?_method=PUT" method="POST">
+												{{!-- IF DON'T SEND ALL 3 BELOW, NEED TO MAKE MULITPLE POSTS IN CONTROLLER --}}
+													<input type="hidden" name="completed" value="0">
+														<input type="hidden" name="current" value="1">
+														<input type="hidden" name="planned" value="0">
+														<input type="hidden" name="id" value="{{this.id}}">
+														<button type="submit" class="registeredButton plannedButton btn">Registered</button>
+												</form>
+											</div>
+											<div class="col-sm-6">
+												<form action="/delete?_method=DELETE" method="POST">
+													<input type="hidden" name="completed" value="0">
+														<input type="hidden" name="id" value="{{this.id}}">
+														<button type="submit" class="deleteButton plannedDeleteButton plannedButton btn">Delete</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="currentDiv">
+					<div class="category categoryCurrent">
+						<img class="certificatePic" src="assets/img/blue-book.png">
+						<span>Registered</span>
+					</div>
+					{{#each courses}}
+						{{#if this.current}}
+							<div class="currentCourses">
+								<div class="row" id="currentRow">
+									<div class="col-sm-12" id="courseLabelDiv">
+										<div class="row classRow courseInfo">
+											<div class="col-sm-12">
+												<p class="courseName currentCourseName">{{this.course_name}}</p>
+											</div>
+										</div>
+										<div class="row" class="classRow">
+											<div class="col-sm-6">
+												<form action="/status?_method=PUT" method="POST">
+													<input type="hidden" name="completed" value="1">
+													<input type="hidden" name="current" value="0">
+													<input type="hidden" name="planned" value="0">
+													<input type="hidden" name="id" value="{{this.id}}">
+													<button type="submit" class="completedButton currentButton btn">Completed!</button>
+												</form>
+											</div>
+											<div class="col-sm-6">
+												<form action="/delete?_method=DELETE" method="POST">
+													<input type="hidden" name="completed" value="0">
+														<input type="hidden" name="id" value="{{this.id}}">
+														<button type="submit" class="deleteButton currentDeleteButton currentButton btn">Delete</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="completedDiv">
+					<div class="category categoryCompleted">
+						<img class="certificatePic" src="assets/img/certificate-blue.png">
+						<span>Completed</span>
+					</div>
+					{{#each courses}}
+						{{#if this.completed}}
+							<div class="completedCourses">
+								<div class="row" id="completedRow">
+									<div class="col-sm-12" id="courseLabelDiv">
+										<div class="row classRow courseInfo">
+											<div class="col-sm-12">
+												<p class="courseName completedCourseName">{{this.course_name}}</p>
+											</div>
+										</div>
+										<div class="row" class="classRow">
+											<div class="col-sm-12">
+												<form action="/delete?_method=DELETE" method="POST">
+													<input type="hidden" name="completed" value="0">
+														<input type="hidden" name="id" value="{{this.id}}">
+														<button type="submit" class="deleteButton completedDeleteButton btn">Delete</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+		</div>
+</div>
+
+<footer> Copyright &copy;2017 Maria Wong </footer>
+
+<script type="text/javascript" src="assets/js/planner_script.js"></script>

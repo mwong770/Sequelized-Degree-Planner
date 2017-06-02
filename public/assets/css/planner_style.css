@@ -1,0 +1,243 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 80px;
+    font-family: 'Patua One', cursive;
+    font-size: 22px;
+    background-color: #7780ac;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.classRow, .row {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+#heading {
+    border: solid 2px #17235e;
+    background-color: #1d2c76;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 70px;
+    margin-top: 10px;
+    color: #f0e9ef;
+}
+
+h3 {
+    font-size: 32px;
+    text-align: center;
+    margin: 30px;
+    color: #f0e9ef;
+}
+
+.btn, input {
+    position: relative;
+    color: #f0e9ef;
+    border-radius: 8px;
+    outline: none !important;
+    font-size: 18px;
+    display: inline;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn {
+    padding: 2px 5px 2px 5px;
+}
+
+input {
+    padding: 5px;
+}
+
+input {
+    color: #332a2a;
+    border-color: #1d2c76;
+}
+
+/*inputs course*/
+#courseName {
+    width: 300px;
+}
+
+/*inputs semester and year*/
+#courseSemester, #courseYear {
+    width: 130px;
+}
+
+/*form button*/
+#addCourse {
+    background-color: #606b9f;
+    padding: 5px;
+}
+
+#addCourse:hover {
+    box-shadow: 0 2px #4a5691;
+    top: 1px;
+}
+
+.registeredButton, .plannedDeleteButton {
+    background-color: #9a6590;
+}
+
+.completedButton, .currentDeleteButton {
+    background-color: #46b59b;
+}
+
+.completedDeleteButton {
+    background-color: #a15f5f;
+}
+
+.plannedButton:hover {
+    box-shadow: 0 2px #6f2361;
+    top: 1px; 
+}
+
+.currentButton:hover {
+    box-shadow: 0 2px #138268;
+    top: 1px; 
+}
+
+.completedDeleteButton:hover {
+    box-shadow: 0 2px #7a1b1b;
+    top: 1px; 
+}
+
+.btn:active {
+    box-shadow: none;
+    top: 4px;
+}
+
+.category {
+    height: 100px;
+    margin: 0 0 20px 0;
+    width: 100%;
+    color: #f0e9ef;
+    padding-top: 30px;
+    font-size: 32px;
+    text-align: center;
+}
+
+.categoryPlanned {
+    background-color: #6f2361;
+}
+
+.categoryCurrent {
+    background-color: #138268;
+}
+
+.categoryCompleted {
+    background-color: #7a1b1b;
+}
+
+#plannedDiv, #currentDiv, #completedDiv {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+#plannedDiv {
+    border: solid 6px #6f2361;
+    background-color: #b791b0;
+    min-height: 285px;
+}
+
+#currentDiv {
+    border: solid 6px #138268;
+    background-color: #a2dacd;
+    min-height: 285px;
+}
+
+#completedDiv {
+    border: solid 6px #7a1b1b;
+    background-color: #bc8d8d;
+    min-height: 285px;
+}
+
+.bookPic, .certificatePic, .clipboardPic  {
+    height: 40px;
+    width: 40px;
+    margin-right: 3px;
+    display: inline;
+}
+
+.plannedCourses, .currentCourses, .completedCourses {
+    background-color: ivory;
+    margin: 20px auto;
+    width: 85%;
+    height: 130px;
+    border-radius: 12px;
+    border-color: white;
+    outline: none !important;
+}
+
+.courseInfo {
+    height: 70px ;
+}
+
+#courseLabelDiv {
+    height: 100px;
+    text-align: center;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.courseName {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.plannedCourseName {
+    color: #631f57;
+}
+
+.currentCourseName {
+    color: #0e614e;
+}
+
+.completedCourseName {
+    color: #6d1818;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding-top: 30px;
+    border: solid 2px #17235e;
+    background-color: #1d2c76;
+}
+
+#errorNotifications {
+    padding: 20px;
+    background-color: #bc8d8d;
+    border: solid 2px #6d1818;
+    box-shadow: 4px 4px 6px #6d1818;
+    border-radius: 8px;
+    width: 800px;
+    margin: 40px auto;
+}
+
+.errorMessage {
+    color: #6d1818;
+}
+
+#errorLink {
+    color: #631f57;
+}
