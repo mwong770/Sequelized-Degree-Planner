@@ -13,6 +13,7 @@
 							<input type="textbox" id="courseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
 							<input type="textbox" id="courseSemester" name="semester" placeholder="Ex. Spring">
 							<input type="textbox" id="courseYear" name="year" placeholder="Ex. 2018">
+							<input type="textbox" id="courseCredits" name="credits" placeholder="(credits) Ex. 3">
 						</div>
 						<button class="btn btn-lg" id="addCourse" type="submit">Add Course</button>
 					</form>
@@ -20,11 +21,11 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div id="plannedDiv">
 					<div class="category categoryPlanned">
 						<img class="clipboardPic" src="assets/img/clipboard-yellow.png">
-						<span >Planned</span>
+						<span> Planned ({{plannedCredits}} cr.) </span>
 					</div>
 					{{#each courses}}
 						{{#if this.planned}}
@@ -35,10 +36,16 @@
 											<div class="col-sm-12">
 												<p class="courseName plannedCourseName">{{this.course_name}}</p>
 											</div>
+											<div class="col-sm-12">
+												<span class="displaySemester plannedCourseSemester"> {{this.semester}} </span><span class="displayYear plannedCourseYear"> {{this.year}} </span>
+											</div>
+											<div class="col-sm-12">
+												<p class="displayCredits plannedCourseCredits"> {{this.credits}} <span> cr. </span> </p>
+											</div>
 										</div>
 										<div class="row classRow">
 											<div class="col-sm-6">
-												<form action="/status?_method=PUT" method="POST">
+												<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
 												{{!-- IF DON'T SEND ALL 3 BELOW, NEED TO MAKE MULITPLE POSTS IN CONTROLLER --}}
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="current" value="1">
@@ -48,7 +55,7 @@
 												</form>
 											</div>
 											<div class="col-sm-6">
-												<form action="/delete?_method=DELETE" method="POST">
+												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
 														<button type="submit" class="deleteButton plannedDeleteButton plannedButton btn">Delete</button>
@@ -62,11 +69,11 @@
 					{{/each}}
 				</div>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div id="currentDiv">
 					<div class="category categoryCurrent">
 						<img class="certificatePic" src="assets/img/blue-book.png">
-						<span>Registered</span>
+						<span> Registered ({{currentCredits}} cr.) </span>
 					</div>
 					{{#each courses}}
 						{{#if this.current}}
@@ -77,10 +84,16 @@
 											<div class="col-sm-12">
 												<p class="courseName currentCourseName">{{this.course_name}}</p>
 											</div>
+											<div class="col-sm-12">
+												<span class="displaySemester currentCourseSemester"> {{this.semester}} </span><span class="displayYear currentCourseYear"> {{this.year}} </span>
+											</div>
+											<div class="col-sm-12">
+												<p class="displayCredits currentCourseCredits"> {{this.credits}} <span> cr. </span> </p>
+											</div>
 										</div>
 										<div class="row" class="classRow">
 											<div class="col-sm-6">
-												<form action="/status?_method=PUT" method="POST">
+												<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
 													<input type="hidden" name="completed" value="1">
 													<input type="hidden" name="current" value="0">
 													<input type="hidden" name="planned" value="0">
@@ -89,7 +102,7 @@
 												</form>
 											</div>
 											<div class="col-sm-6">
-												<form action="/delete?_method=DELETE" method="POST">
+												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
 														<button type="submit" class="deleteButton currentDeleteButton currentButton btn">Delete</button>
@@ -103,11 +116,11 @@
 					{{/each}}
 				</div>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div id="completedDiv">
 					<div class="category categoryCompleted">
 						<img class="certificatePic" src="assets/img/certificate-blue.png">
-						<span>Completed</span>
+						<span> Completed ({{completedCredits}} cr.) </span>
 					</div>
 					{{#each courses}}
 						{{#if this.completed}}
@@ -118,13 +131,19 @@
 											<div class="col-sm-12">
 												<p class="courseName completedCourseName">{{this.course_name}}</p>
 											</div>
+											<div class="col-sm-12">
+												<span class="displaySemester completedCourseSemester"> {{this.semester}} </span><span class="displayYear completedCourseYear"> {{this.year}} </span>
+											</div>
+											<div class="col-sm-12">
+												<p class="displayCredits completedCourseCredits"> {{this.credits}} <span> cr. </span> </p>
+											</div>
 										</div>
 										<div class="row" class="classRow">
 											<div class="col-sm-12">
 												<form action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton completedDeleteButton btn">Delete</button>
+														<button type="submit" class="deleteButton completedButton completedDeleteButton btn"> Delete </button>
 												</form>
 											</div>
 										</div>

@@ -21,6 +21,14 @@ body {
     padding: 0;
 }
 
+.currentLftBtn {
+    margin-left: 30px;
+}
+
+.currentRtBtn {
+    margin-right: 30px;
+}
+
 #heading {
     border: solid 2px #17235e;
     background-color: #1d2c76;
@@ -67,13 +75,17 @@ input {
 }
 
 /*inputs course*/
-#courseName {
+#courseName, #displaySemester, #displayYear {
     width: 300px;
 }
 
 /*inputs semester and year*/
-#courseSemester, #courseYear {
+#courseSemester, #courseYear, #courseCredits {
     width: 130px;
+}
+
+.currentButton, .plannedButton, .completedButton {
+    margin-top: -15px;
 }
 
 /*form button*/
@@ -196,19 +208,28 @@ input {
 }
 
 .courseName {
-    margin-left: 15px;
     font-size: 20px;
+    margin-bottom: -5px;
 }
 
-.plannedCourseName {
+.displayCredits {
+    margin-top: -3px;
+    /*margin-bottom: -.5px;*/
+}
+
+.plannedCourseName, .plannedCourseSemester, .plannedCourseYear, .plannedCourseCredits {
     color: #631f57;
 }
 
-.currentCourseName {
+.displaySemester, .displayYear, .displayCredits {
+    font-size: 17px;
+}
+
+.currentCourseName, .currentCourseSemester, .currentCourseYear, .currentCourseCredits {
     color: #0e614e;
 }
 
-.completedCourseName {
+.completedCourseName, .completedCourseSemester, .completedCourseYear, .completedCourseCredits {
     color: #6d1818;
 }
 
