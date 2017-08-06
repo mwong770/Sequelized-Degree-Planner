@@ -7,22 +7,26 @@ var router = express.Router();
 
 router.get("/", function(req, res) {
     db.Courses.findAll({
-            order: [['semester_code', 'ASC']]
+            // orders data asc by semester
+            order: [["semester_code", "ASC"]]
         }).then(function(data) {
+
+            // puts data in arrays by status
             var plannedArray = [];
             var currentArray = [];
             var completedArray = [];
             for (var i = 0; i < data.length; i++) { 
-                if (data[i].status === 'planned') {
+                if (data[i].status === "planned") {
                     plannedArray.push(data[i]);
                 }
-                if (data[i].status === 'current') {
+                if (data[i].status === "current") {
                     currentArray.push(data[i]);
                 }
-                if (data[i].status === 'completed') {
+                if (data[i].status === "completed") {
                     completedArray.push(data[i]);
                 }
             }
+            // puts sum of each status in variables
             var plannedSum = 0;
             var currentSum = 0;
             var completedSum = 0;
@@ -38,6 +42,7 @@ router.get("/", function(req, res) {
         var courseData = {
             courses: data
         };
+        // renders index with status arrays and status sums
         res.render("index", {
             planned: plannedArray,
             current: currentArray,
@@ -101,7 +106,6 @@ router.put("/status", function(req, res) {
                     id: req.body.id
                 }
         }
-
     ).then(function () {
         res.redirect("/");
     });

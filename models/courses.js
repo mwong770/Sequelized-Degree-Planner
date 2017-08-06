@@ -11,9 +11,9 @@ module.exports = function(sequelize, DataTypes) {
                 }
             },
             status: {
-                type: DataTypes.ENUM('planned', 'current', 'completed'),
+                type: DataTypes.ENUM("planned", "current", "completed"),
                 allowNull: false,
-                defaultValue: 'planned'
+                defaultValue: "planned"
             },
             semester: {
                 type: DataTypes.STRING,
