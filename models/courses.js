@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
                 required: true,
                 validate: {
-                    not: /[^a-zA-Z\d\s:]/,
                     notEmpty: true
                 }
             },
@@ -42,6 +41,10 @@ module.exports = function(sequelize, DataTypes) {
             credits: {
                 type: DataTypes.INTEGER,
                 allowNull: false
+            },
+            grade: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         },
         { 
