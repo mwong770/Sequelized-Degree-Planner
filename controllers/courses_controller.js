@@ -6,43 +6,45 @@ var db = require("../models");
 var router = express.Router();
 
 router.get("/", function(req, res) {
-
-    // gets the sum of credits from each category
-    function getSum(field) {
-        return db.Courses.sum('credits', { where: { [field]: 1 } } ).then(function(data) {
-            if (!data > 0) { data = 0 };
-            return data;
-        });
-    }
-
-    var plannedCredits;
-    var currentCredits;
-    var completedCredits;
-
-    getSum("planned").then(function(data) {
-        plannedCredits = data;
-    });
-
-    getSum("current").then(function(data) {
-        currentCredits = data;
-    });
-
-    getSum("completed").then(function(data) {
-        completedCredits = data;
-    });
-
-    // gets all data from db then renders index with data and credit sums 
     db.Courses.findAll({
-                order: [['semester_code', 'ASC']] 
+            order: [['semester_code', 'ASC']]
         }).then(function(data) {
+            var plannedArray = [];
+            var currentArray = [];
+            var completedArray = [];
+            for (var i = 0; i < data.length; i++) { 
+                if (data[i].status === 'planned') {
+                    plannedArray.push(data[i]);
+                }
+                if (data[i].status === 'current') {
+                    currentArray.push(data[i]);
+                }
+                if (data[i].status === 'completed') {
+                    completedArray.push(data[i]);
+                }
+            }
+            var plannedSum = 0;
+            var currentSum = 0;
+            var completedSum = 0;
+            for (var i = 0; i < plannedArray.length; i++) {
+                plannedSum += plannedArray[i].credits;
+            }
+            for (var i = 0; i < currentArray.length; i++) {
+                currentSum += currentArray[i].credits;
+            }
+            for (var i = 0; i < completedArray.length; i++) {
+                completedSum += completedArray[i].credits;
+            }
         var courseData = {
             courses: data
         };
         res.render("index", {
-            courses: data,
-            plannedCredits: plannedCredits,
-            currentCredits: currentCredits,
-            completedCredits: completedCredits
+            planned: plannedArray,
+            current: currentArray,
+            completed: completedArray,
+            plannedSum: plannedSum,
+            currentSum: currentSum,
+            completedSum: completedSum
         });
     });
 });
@@ -87,11 +89,11 @@ router.post("/", function(req, res) {
 
 // changes course category in db 
 router.put("/status", function(req, res) {
+    console.log("req.body.status");
+    console.log(req.body.status);
     db.Courses.update(
         {
-            completed: req.body.completed,
-            current: req.body.current,
-            planned: req.body.planned
+            status: req.body.status
         }, 
         { 
             where: 

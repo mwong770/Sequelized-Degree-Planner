@@ -10,20 +10,10 @@ module.exports = function(sequelize, DataTypes) {
                     notEmpty: true
                 }
             },
-            planned: {
-                type: DataTypes.BOOLEAN,
+            status: {
+                type: DataTypes.ENUM('planned', 'current', 'completed'),
                 allowNull: false,
-                defaultValue: true
-            },
-            current: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-                defaultValue: false
-            },
-            completed: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-                defaultValue: false
+                defaultValue: 'planned'
             },
             semester: {
                 type: DataTypes.STRING,
