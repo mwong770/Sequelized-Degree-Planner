@@ -2,20 +2,20 @@
 		<div class="row" id="heading">
 			<div class="col-xs-12 text-center">
 				<header>
-					<h1>Degree Planner</h1>
-					<h3>Enter your courses, then click registered or completed as you take courses.</h3>
+					<h1> Degree Planner </h1>
+					<h3> Enter your courses, then click registered or completed as you take courses. </h3>
 				</header>
 			</div>
 			<div class="col-xs-12 text-center">
 				<div>
 					<form class="courseEntryForm" id="courseEntryForm" action="/" method="POST">
 						<div class="form-group">
-							<input type="textbox" id="courseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
-							<input type="textbox" id="courseSemester" name="semester" placeholder="Ex. Spring">
-							<input type="textbox" id="courseYear" name="year" placeholder="Ex. 2018">
-							<input type="textbox" id="courseCredits" name="credits" placeholder="(credits) Ex. 3">
+							<input required="true" type="text" id="courseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
+							<input required="true" type="text" id="courseSemester" name="semester" placeholder="Ex. Spring">
+							<input required="true" type="number" id="courseYear" name="year" placeholder="Ex. 2018">
+							<input required="true" type="number" id="courseCredits" name="credits" placeholder="(credits) Ex. 3">
 						</div>
-						<button class="btn btn-lg" id="addCourse" type="submit">Add Course</button>
+						<button class="btn btn-lg" id="addCourse" type="submit"> Add Course </button>
 					</form>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 									<div class="col-sm-12" id="courseLabelDiv">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
-												<p class="courseName plannedCourseName">{{this.course_name}}</p>
+												<p class="courseName plannedCourseName"> {{this.course_name}} </p>
 											</div>
 											<div class="col-sm-12">
 												<span class="displaySemester plannedCourseSemester"> {{this.semester}} </span><span class="displayYear plannedCourseYear"> {{this.year}} </span>
@@ -48,14 +48,14 @@
 												<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
 													<input type="hidden" name="status" value="current">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="registeredButton plannedButton btn">Registered</button>
+														<button type="submit" class="registeredButton plannedButton btn">Registered </button>
 												</form>
 											</div>
 											<div class="col-sm-6">
 												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton plannedDeleteButton plannedButton btn">Delete</button>
+														<button type="submit" class="deleteButton plannedDeleteButton plannedButton btn"> Delete </button>
 												</form>
 											</div>
 										</div>
@@ -79,7 +79,7 @@
 									<div class="col-sm-12" id="courseLabelDiv">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
-												<p class="courseName currentCourseName">{{this.course_name}}</p>
+												<p class="courseName currentCourseName"> {{this.course_name}} </p>
 											</div>
 											<div class="col-sm-12">
 												<span class="displaySemester currentCourseSemester"> {{this.semester}} </span><span class="displayYear currentCourseYear"> {{this.year}} </span>
@@ -90,17 +90,13 @@
 										</div>
 										<div class="row" class="classRow">
 											<div class="col-sm-6">
-												<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
-													<input type="hidden" name="status" value="completed">
-													<input type="hidden" name="id" value="{{this.id}}">
-													<button type="submit" class="completedButton currentButton btn">Completed!</button>
-												</form>
+												<button id="{{this.id}}" type="button" class="currentLftBtn completedButton currentButton gradeTrigger btn btn-info btn-lg" data-toggle="modal" data-target="#courseGrade"> Completed! </button>
 											</div>
 											<div class="col-sm-6">
 												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton currentDeleteButton currentButton btn">Delete</button>
+														<button type="submit" class="deleteButton currentDeleteButton currentButton btn"> Delete </button>
 												</form>
 											</div>
 										</div>
@@ -123,7 +119,7 @@
 									<div class="col-sm-12" id="courseLabelDiv">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
-												<p class="courseName completedCourseName">{{this.course_name}}</p>
+												<p class="courseName completedCourseName"> {{this.course_name}} </p>
 											</div>
 											<div class="col-sm-12">
 												<span class="displaySemester completedCourseSemester"> {{this.semester}} </span><span class="displayYear completedCourseYear"> {{this.year}} </span>
@@ -133,11 +129,14 @@
 											</div>
 										</div>
 										<div class="row" class="classRow">
-											<div class="col-sm-12">
+											<div id="gradeDiv" class="col-sm-6">
+												<div id="gradeButton" class="gradeButton completedGradeButton currentLftBtn"> {{this.grade}} </div>
+											</div>
+											<div class="col-sm-6">
 												<form action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton completedButton completedDeleteButton btn"> Delete </button>
+														<button type="submit" class="deleteButton completedButton completedDeleteButton btn currentRtBtn"> Delete </button>
 												</form>
 											</div>
 										</div>
@@ -148,8 +147,33 @@
 				</div>
 			</div>
 		</div>
-</div>
+
+	<!-- Grade Modal -->
+  	<div class="modal fade" id="courseGrade" role="dialog">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+		        <div class="modal-header">
+		          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          	<h2 class="modal-title"> Congratulations! </h2>
+		        </div>
+		        <div class="modal-body">
+		          	<p> Please enter your grade. </p>
+		          	<p class="noGrade"> If no grade is given, you can enter N/A </p>
+		          	<form class="gradeEntryForm" id="gradeEntryForm" action="/grade?_method=PUT" method="POST">
+						<div class="form-group">
+							<input type="hidden" name="id" class="idValue">
+							<input required="true" type="text" id="gradeEntry" name="grade" placeholder="Ex. B+">
+						</div>
+						<button class="btn btn-lg" id="addGrade" type="submit"> Add Grade </button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+					</form>
+		        </div>
+	      </div>
+	    </div>
+  	</div>
+  
+</div> {{!-- ends container --}}
 
 <footer> Copyright &copy;2017 Maria Wong </footer>
 
-<script type="text/javascript" src="assets/js/planner_script.js"></script>
+

@@ -61,6 +61,14 @@ h3 {
     text-align: center;
 }
 
+.gradeButton {
+    color: #f0e9ef;
+    border-radius: 8px;
+    outline: none !important;
+    font-size: 18px;
+    text-align: center;
+}
+
 .btn {
     padding: 2px 5px 2px 5px;
 }
@@ -72,6 +80,18 @@ input {
 input {
     color: #332a2a;
     border-color: #1d2c76;
+}
+
+/* removes spin button on numeric input fields */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* removes spin button on numeric input fields */
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 /*inputs course*/
@@ -107,7 +127,7 @@ input {
     background-color: #46b59b;
 }
 
-.completedDeleteButton {
+.completedDeleteButton, .completedGradeButton {
     background-color: #a15f5f;
 }
 
@@ -214,7 +234,6 @@ input {
 
 .displayCredits {
     margin-top: -3px;
-    /*margin-bottom: -.5px;*/
 }
 
 .plannedCourseName, .plannedCourseSemester, .plannedCourseYear, .plannedCourseCredits {
@@ -261,4 +280,21 @@ footer {
 
 #errorLink {
     color: #631f57;
+}
+
+#gradeButton {
+    padding: 3px 0px;
+    margin-top: -5px;
+    min-width: 50px !important;
+    max-width: 100px;
+    max-height: 31px;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 70px;
+}
+
+/*modal suggestion of n/a*/
+.noGrade {
+    font-style: italic;
+    font-size: 17px;
 }

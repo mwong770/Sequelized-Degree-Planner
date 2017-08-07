@@ -39,9 +39,6 @@ router.get("/", function(req, res) {
             for (var i = 0; i < completedArray.length; i++) {
                 completedSum += completedArray[i].credits;
             }
-        var courseData = {
-            courses: data
-        };
         // renders index with status arrays and status sums
         res.render("index", {
             planned: plannedArray,
@@ -96,6 +93,7 @@ router.post("/", function(req, res) {
 router.put("/status", function(req, res) {
     console.log("req.body.status");
     console.log(req.body.status);
+    // console.log(req);
     db.Courses.update(
         {
             status: req.body.status
@@ -110,6 +108,28 @@ router.put("/status", function(req, res) {
         res.redirect("/");
     });
 });
+
+// changes course category in db 
+router.put("/grade", function(req, res) {
+    console.log("req.body.grade");
+    console.log(req.body.id);
+    console.log(req.body.grade);
+    db.Courses.update(
+        {
+            grade: req.body.grade,
+            status: "completed"
+        }, 
+        { 
+            where: 
+                {
+                    id: req.body.id
+                }
+        }
+    ).then(function () {
+        res.redirect("/");
+    });
+});
+
 
 // deletes a course from the db
 router.delete("/delete", function(req, res) {
