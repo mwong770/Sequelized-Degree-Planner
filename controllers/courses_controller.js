@@ -10,7 +10,7 @@ router.get("/", function(req, res) {
             // orders data asc by semester
             order: [["semester_code", "ASC"]]
         }).then(function(data) {
-
+            console.log(data);
             // puts data in arrays by status
             var plannedArray = [];
             var currentArray = [];
