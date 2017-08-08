@@ -218,6 +218,7 @@ input[type=number] {
     display: inline;
 }
 
+/*courses div*/
 .plannedCourses, .currentCourses, .completedCourses {
     background-color: ivory;
     margin: 20px auto;
@@ -307,7 +308,6 @@ footer {
     overflow: hidden;
     text-align: center;
     margin-left: 70px;
-    /*width: 50px;*/
 }
 
 /*modal suggestion of n/a*/
@@ -343,7 +343,6 @@ footer {
 
 .modal-content {
     margin: 0 auto !important;
-    /*margin-left: 12px;*/
 }
 
 .modal-content {
@@ -372,13 +371,13 @@ footer {
 }
 
 .modal select {
-    width: 150px;
+    width: 240px;
     font-size: 17.5px !important;
     color: #787878;
 }
 
 .modal input {
-    width: 150px;
+    width: 240px;
     border-radius: 5px;
     padding: 3.5px 0 3.5px 5px !important;
 }
@@ -393,7 +392,7 @@ footer {
 }
 
 .statusSubmit {
-    margin-left: 45px;
+    margin-left: 135px;
 }
 
 #addGrade {
@@ -417,7 +416,18 @@ footer {
 #gradeModal {
     border: solid 6px #7a1b1b !important;
     background-color: #bc8d8d !important;
+}
 
+.plannedEditBtn {
+    color: #9a6590;
+}
+
+.currentEditBtn {
+    color: #138268;
+}
+
+.completedEditBtn {
+    color: #a15f5f;
 }
 
 
