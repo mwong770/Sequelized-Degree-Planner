@@ -34,7 +34,8 @@ module.exports = function(sequelize, DataTypes) {
             },
             grade: {
                 type: DataTypes.STRING,
-                allowNull: true
+                allowNull: false, 
+                defaultValue: "N/A"
             }
         },
         { 

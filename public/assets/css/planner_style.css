@@ -95,12 +95,21 @@ input[type=number] {
 }
 
 /*inputs course*/
-#courseName, #displaySemester, #displayYear {
+
+#courseName {
+    width: 225px;
+}
+
+#courseYear {
+    width: 85px;
+}
+
+#displaySemester, #displayYear {
     width: 300px;
 }
 
 /*inputs semester and year*/
-#courseSemester, #courseYear, #courseCredits {
+#courseSemester, #courseCredits {
     width: 130px;
 }
 
@@ -136,14 +145,17 @@ input[type=number] {
     top: 1px; 
 }
 
-.currentButton:hover {
+.currentButton:hover, .completedButton:hover, .completedButton:focus, .completedButton:active {
     box-shadow: 0 2px #138268;
     top: 1px; 
+    background-color: #46b59b;
+    color: black;
 }
 
 .completedDeleteButton:hover {
     box-shadow: 0 2px #7a1b1b;
     top: 1px; 
+    background-color: #a15f5f;
 }
 
 .btn:active {
@@ -236,19 +248,23 @@ input[type=number] {
     margin-top: -3px;
 }
 
-.plannedCourseName, .plannedCourseSemester, .plannedCourseYear, .plannedCourseCredits {
+.plannedCourse {
     color: #631f57;
+}
+
+#gradeEntry {
+    width: 150px;
 }
 
 .displaySemester, .displayYear, .displayCredits {
     font-size: 17px;
 }
 
-.currentCourseName, .currentCourseSemester, .currentCourseYear, .currentCourseCredits {
+.currentCourse {
     color: #0e614e;
 }
 
-.completedCourseName, .completedCourseSemester, .completedCourseYear, .completedCourseCredits {
+.completedCourse {
     color: #6d1818;
 }
 
@@ -291,6 +307,7 @@ footer {
     overflow: hidden;
     text-align: center;
     margin-left: 70px;
+    /*width: 50px;*/
 }
 
 /*modal suggestion of n/a*/
@@ -298,3 +315,114 @@ footer {
     font-style: italic;
     font-size: 17px;
 }
+
+.editButton {
+    width: 60px;
+    height: 25px;
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 30px;
+    height: 40px;
+    background-color: transparent;
+}
+
+#semesterInput, #statusInput, select, #semester, #status  {
+    display: inline-block !important;
+    font-family: 'Patua One', cursive !important;
+    font-size: 19px !important;
+}
+
+#semesterInput {
+    width: 165px;
+}
+
+#statusInput {
+    width: 105px;
+}
+
+.modal-content {
+    margin: 0 auto !important;
+    /*margin-left: 12px;*/
+}
+
+.modal-content {
+    border: solid 6px #6f2361;
+    background-color: #b791b0;
+    width: 330px;
+}
+
+.modal input, .modal select {
+    border: solid 1px #6f2361;
+}
+
+.modal h2, .modal p {
+    text-align: center;
+    color: #17235e;
+}
+
+.modal label {
+    display: block;
+    font-size: 17px;
+    color: #17235e;
+}
+
+.modal input {
+    text-align: left;
+}
+
+.modal select {
+    width: 150px;
+    font-size: 17.5px !important;
+    color: #787878;
+}
+
+.modal input {
+    width: 150px;
+    border-radius: 5px;
+    padding: 3.5px 0 3.5px 5px !important;
+}
+
+.yearForm {
+    display: block;
+    margin-top: 15px;
+}
+
+.editSubmit {
+    background-color: #9a6590;
+}
+
+.statusSubmit {
+    margin-left: 45px;
+}
+
+#addGrade {
+    margin-left: 0;
+    text-align: center;
+}
+
+.gradeEntryForm {
+    text-align: center;
+}
+
+#gradeEntryInput {
+    text-align: center;
+    border: solid 1px #7a1b1b !important;
+}
+
+.editGradeSubmit {
+    background-color: #a15f5f;
+}
+
+#gradeModal {
+    border: solid 6px #7a1b1b !important;
+    background-color: #bc8d8d !important;
+
+}
+
+
+
+
+
+
+
