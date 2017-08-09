@@ -210,14 +210,23 @@ input[type=number] {
     background-color: ivory;
     margin: 20px auto;
     width: 85%;
-    height: 130px;
+    height: 155px;
     border-radius: 12px;
     border-color: white;
     outline: none !important;
+    display: relative;
+}
+
+.courseName {
+    font-size: 20px;
+    margin-bottom: -5px;
+    margin-right: 23px;
+    max-height: 56px; 
+    overflow: hidden;
 }
 
 .courseInfo {
-    height: 70px ;
+    height: 113px;
 }
 
 #courseLabelDivPlanned, #courseLabelDivCurrent, #courseLabelDivCompleted {
@@ -240,11 +249,6 @@ input[type=number] {
 
 #statusInputMain, #statusInputModal {
     width: 105px;
-}
-
-.courseName {
-    font-size: 20px;
-    margin-bottom: -5px;
 }
 
 .displayCredits {

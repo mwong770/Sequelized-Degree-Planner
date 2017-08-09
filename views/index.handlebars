@@ -19,7 +19,7 @@
 		                            <option name="semester" value="Summer"> Summer </option>
 		                        </select>
 		                    </div>
-							<input required="true" type="number" id="courseYear" name="year" placeholder="Ex. 2018">
+							<input required="true" type="number" min="1900" max="2100" id="courseYear" name="year" placeholder="Ex. 2018">
 							<input required="true" type="number" id="courseCredits" name="credits" placeholder="(credits) Ex. 3">
 							<div class="input-field" name="status" aria-required="true" id="statusInputMain">
 		                        <select required="true" class="form-control" name="status" id="status">
@@ -44,45 +44,43 @@
 						<span> Planned ({{plannedSum}} cr.) </span>
 					</div>
 					{{#each planned}}
-						
-							<div class="plannedCourses">
-								<div class="row">
-									<div class="col-sm-12" id="courseLabelDivPlanned">
-										<div class="row classRow courseInfo">
-											<div class="col-sm-12">
-												<p class="courseName plannedCourse"> {{this.course_name}} </p>
-											</div>
-											<div class="col-sm-12">
-												<span class="displaySemester plannedCourse"> {{this.semester}} </span><span class="displayYear plannedCourse"> {{this.year}} </span>
-											</div>
-											<div class="col-sm-12">
-												<p class="displayCredits plannedCourse"> {{this.credits}} <span> cr. </span> </p>
-											</div>
+						<div class="plannedCourses">
+							<div class="row">
+								<div class="col-sm-12" id="courseLabelDivPlanned">
+									<div class="row classRow courseInfo">
+										<div class="col-sm-12">
+											<p class="courseName plannedCourse"> {{this.course_name}} </p>
 										</div>
-										<div class="row classRow">
-											<div class="col-sm-6">
-												<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
-													<input type="hidden" name="status" value="current">
-													<input type="hidden" name="id" value="{{this.id}}">
-													<button type="submit" class="registeredButton plannedButton btn">Registered </button>
-												</form>
-											</div>
-											<div class="col-sm-6">
-												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
-													<input type="hidden" name="completed" value="0">
-														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="plannedDeleteButton plannedButton btn"> Delete </button>
-												</form>
-											</div>
+										<div class="col-sm-12">
+											<span class="displaySemester plannedCourse"> {{this.semester}} </span><span class="displayYear plannedCourse"> {{this.year}} </span>
 										</div>
-										<form>
-											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse plannedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="plannedEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
-										</form>
+										<div class="col-sm-12">
+											<p class="displayCredits plannedCourse"> {{this.credits}} <span> cr. </span> </p>
+										</div>
 									</div>
+									<div class="row classRow classAction">
+										<div class="col-sm-6">
+											<form class="currentLftBtn" action="/status?_method=PUT" method="POST">
+												<input type="hidden" name="status" value="current">
+												<input type="hidden" name="id" value="{{this.id}}">
+												<button type="submit" class="registeredButton plannedButton btn"> Registered</button>
+											</form>
+										</div>
+										<div class="col-sm-6">
+											<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
+												<input type="hidden" name="completed" value="0">
+													<input type="hidden" name="id" value="{{this.id}}">
+													<button type="submit" class="plannedDeleteButton plannedButton btn"> Delete </button>
+											</form>
+										</div>
+									</div>
+									<form>
+										<input type="hidden" name="id" value="{{this.id}}">
+										<button data-id="{{this.id}}" type="button" class="editButton editCourse plannedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="plannedEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+									</form>
 								</div>
 							</div>
-					
+						</div>
 					{{/each}}
 				</div>
 			</div>
@@ -93,42 +91,39 @@
 						<span> Registered ({{currentSum}} cr.) </span>
 					</div>
 					{{#each current}}
-						
-							<div class="currentCourses">
-								<div class="row">
-									<div class="col-sm-12" id="courseLabelDivCurrent">
-										<div class="row classRow courseInfo">
-											<div class="col-sm-12">
-												<p class="courseName currentCourse"> {{this.course_name}} </p>
-											</div>
-											<div class="col-sm-12">
-												<span class="displaySemester currentCourse"> {{this.semester}} </span><span class="displayYear currentCourse"> {{this.year}} </span>
-											</div>
-											<div class="col-sm-12">
-												<p class="displayCredits currentCourse"> {{this.credits}} <span> cr. </span> </p>
-											</div>
+						<div class="currentCourses">
+							<div class="row">
+								<div class="col-sm-12" id="courseLabelDivCurrent">
+									<div class="row classRow courseInfo">
+										<div class="col-sm-12">
+												p class="courseName currentCourse"> {{this.course_name}} </p>
 										</div>
-										<div class="row" class="classRow">
-											<div class="col-sm-6">
-												<button id="{{this.id}}" type="button" class="currentLftBtn completedButton currentButton gradeTrigger btn btn-info btn-lg" data-toggle="modal" data-target="#courseGrade"> Completed! </button>
-											</div>
-											<div class="col-sm-6">
-												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
-													<input type="hidden" name="completed" value="0">
-														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="currentDeleteButton currentButton btn"> Delete </button>
-												</form>
-											</div>
+										<div class="col-sm-12">
+											<span class="displaySemester currentCourse"> {{this.semester}} </span><span class="displayYear currentCourse"> {{this.year}} </span>
 										</div>
-
-										<form>
-											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse currentCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="currentEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
-										</form>
+										<div class="col-sm-12">
+											<p class="displayCredits currentCourse"> {{this.credits}} <span> cr. </span> </p>
+										</div>
 									</div>
+									<div class="row" class="classRow classAction">
+										<div class="col-sm-6">
+											<button id="{{this.id}}" type="button" class="currentLftBtn completedButton currentButton gradeTrigger btn btn-info btn-lg" data-toggle="modal" data-target="#courseGrade"> Completed! </button>
+										</div>
+										<div class="col-sm-6">
+											<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
+												<input type="hidden" name="completed" value="0">
+													<input type="hidden" name="id" value="{{this.id}}">
+													<button type="submit" class="currentDeleteButton currentButton btn"> Delete </button>
+											</form>
+										</div>
+									</div>
+									<form>
+										<input type="hidden" name="id" value="{{this.id}}">
+										<button data-id="{{this.id}}" type="button" class="editButton editCourse currentCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="currentEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+									</form>
 								</div>
 							</div>
-					
+						</div>
 					{{/each}}
 				</div>
 			</div>
@@ -139,40 +134,39 @@
 						<span> Completed ({{completedSum}} cr.) </span>
 					</div>
 					{{#each completed}}
-							<div class="completedCourses">
-								<div class="row">
-									<div class="col-sm-12" id="courseLabelDivCompleted">
-										<div class="row classRow courseInfo">
-											<div class="col-sm-12">
-												<p class="courseName completedCourse"> {{this.course_name}} </p>
-											</div>
-											<div class="col-sm-12">
-												<span class="displaySemester completedCourse"> {{this.semester}} </span><span class="displayYear completedCourse"> {{this.year}} </span>
-											</div>
-											<div class="col-sm-12">
-												<p class="displayCredits completedCourse"> {{this.credits}} <span> cr. </span> </p>
-											</div>
+						<div class="completedCourses">
+							<div class="row">
+								<div class="col-sm-12" id="courseLabelDivCompleted">
+									<div class="row classRow courseInfo">
+										<div class="col-sm-12">
+											<p class="courseName completedCourse"> {{this.course_name}} </p>
 										</div>
-										<div class="row" class="classRow">
-											<div class="col-sm-6">
-												<div class="gradeButton completedGradeButton currentLftBtn"> {{this.grade}} </div>
-											</div>
-											<div class="col-sm-6">
-												<form action="/delete?_method=DELETE" method="POST">
-													<input type="hidden" name="completed" value="0">
-													<input type="hidden" name="id" value="{{this.id}}">
-													<button type="submit" class="completedButton completedDeleteButton btn currentRtBtn"> Delete </button>
-												</form>
-										
-											</div>
+										<div class="col-sm-12">
+											<span class="displaySemester completedCourse"> {{this.semester}} </span><span class="displayYear completedCourse"> {{this.year}} </span>
 										</div>
-										<form>
-											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse completedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="glyphicon glyphicon-pencil completedEditBtn" aria-hidden="true"></i></button>
-										</form>
+										<div class="col-sm-12">
+											<p class="displayCredits completedCourse"> {{this.credits}} <span> cr. </span> </p>
+										</div>
 									</div>
+									<div class="row" class="classRow classAction">
+										<div class="col-sm-6">
+											<div class="gradeButton completedGradeButton currentLftBtn"> {{this.grade}} </div>
+										</div>
+										<div class="col-sm-6">
+											<form action="/delete?_method=DELETE" method="POST">
+												<input type="hidden" name="completed" value="0">
+												<input type="hidden" name="id" value="{{this.id}}">
+												<button type="submit" class="completedButton completedDeleteButton btn currentRtBtn"> Delete </button>
+											</form>
+										</div>
+									</div>
+									<form>
+										<input type="hidden" name="id" value="{{this.id}}">
+										<button data-id="{{this.id}}" type="button" class="editButton editCourse completedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="glyphicon glyphicon-pencil completedEditBtn" aria-hidden="true"></i> </button>
+									</form>
 								</div>
 							</div>
+						</div>
 					{{/each}}
 				</div>
 			</div>
@@ -206,7 +200,7 @@
 	    <div class="modal-dialog">
 	      <div class="modal-content">
 		        <div class="modal-header">
-		          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          	<button type="button" class="close" data-dismiss="modal"> &times; </button>
 		          	<h2 class="modal-title"> Course Update </h2>
 		        </div>
 		        <div class="modal-body">
