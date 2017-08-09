@@ -1,8 +1,7 @@
 
-
 # Sequelized Degree Planner
 
-A Node.js and MySQL degree planner that lets students keep track of which courses they have and have not taken. 
+A Node.js and MySQL degree planner that lets students organize courses by semester planned, registered, or completed
 
 [Check Out Sequelized Degree Planner](https://sequelized-degree-planner.herokuapp.com/)
 
@@ -17,11 +16,7 @@ A Node.js and MySQL degree planner that lets students keep track of which course
 
 [:crystal_ball:  Usage](#usage)
 
-[:credit_card:  Customer View](#customer-view)
-
-[:ledger:  Manager View](#manager-view)
-
-[:briefcase:  Supervisor View](#supervisor-view)
+[:boom:  Features](#features)
 
 [:bust_in_silhouette:  Developer](#developer)
 
@@ -52,38 +47,40 @@ A Node.js and MySQL degree planner that lets students keep track of which course
 
 * Install [Node.js](https://nodejs.org/en/download/) and [MySQL](https://www.mysql.com/downloads/), if you don't have them.
 * Optional: Install [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), if you don't have it.
-* Clone the Bamazon repository to your local computer.
+* Clone the Sequelized Degree Planner repository to your local computer.
 * On your terminal, navigate to the folder where the repository is located.
 * Run the command `npm install` to download all required dependencies.
 
 
 ## <a name="mysql-configuration"></a> :bar_chart: MySQL Configuration 
 
-* In bamazonCustomer.js, find the following code. 
+* Create a file called config.json and enter the following code: 
 
-![screenshot of database connection](/screenshots/Database_Connection.png)
+![screenshot of configuration file](/screenshots/config_json.png)
 
-* Enter your MySQL password, if you have one.
-* To create the database and tables and then populate the tables, you can run the .sql files in the terminal by going to the Bamazon folder and typing `mysql -uroot -p < bamazonSchema.sql` and `mysql -uroot -p < bamazonSeeds.sql`, or you can run bamazonSchema.sql and bamazonSeeds.sql in MySQL Workbench.
+* Enter your MySQL password in the config.json file, if you have one.
+* To create the database run `mysql -uroot -p` in your terminal to connect to MySQL, then run the command `create database courses_db`. Alternately, you can run the command `Create Database courses_db` in MySQL Workbench.
 
 
 ## <a name="usage"></a> :crystal_ball: Usage 
 
+* On your terminal, navigate to the folder where the repository is located.
+* Run the command `node server.js` to begin using the app.
 
 
 ## <a name="features"></a> :boom: Features
 
-* Read the latest scraped articles from NPR when first entering the site
-* Read the headline, summary and byline of newly scraped articles
-* Click "Read" to read the full article on NPR's website
-* Add notes to articles
-* Save and unsave articles
-* Click "Saved" to see only saved articles
-* Hide and unhide articles
-* Click "Hidden" to see only hidden articles
-* Click "Home" or "Scrape New Articles" to see unsaved and unhidden articles 
-* Delete any comments
-* Click "Scrape New Articles" to rescrape articles from NPR's site
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*  
+* 
+* 
 
 
 ## <a name="developer"></a> :bust_in_silhouette: Developer
