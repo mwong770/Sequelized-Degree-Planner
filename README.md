@@ -61,6 +61,7 @@ A Node.js and MySQL degree planner that lets students organize courses by semest
 * Enter your MySQL password in the config.json file, if you have one.
 * To create the database run `mysql -uroot -p` in your terminal to connect to MySQL, then run the command `create database courses_db`. Alternately, you can run the command `Create Database courses_db` in MySQL Workbench.
 
+![screenshot of MySQL database creation](/screenshots/mysql.png)
 
 ## <a name="usage"></a> :crystal_ball: Usage 
 
