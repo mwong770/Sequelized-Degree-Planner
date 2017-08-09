@@ -61,14 +61,6 @@ h3 {
     text-align: center;
 }
 
-.gradeButton {
-    color: #f0e9ef;
-    border-radius: 8px;
-    outline: none !important;
-    font-size: 18px;
-    text-align: center;
-}
-
 .btn {
     padding: 2px 5px 2px 5px;
 }
@@ -96,7 +88,7 @@ input[type=number] {
 
 /*inputs course*/
 
-#courseName {
+#courseNameMainInput {
     width: 225px;
 }
 
@@ -104,12 +96,7 @@ input[type=number] {
     width: 85px;
 }
 
-#displaySemester, #displayYear {
-    width: 300px;
-}
-
-/*inputs semester and year*/
-#courseSemester, #courseCredits {
+#courseCredits {
     width: 130px;
 }
 
@@ -233,11 +220,26 @@ input[type=number] {
     height: 70px ;
 }
 
-#courseLabelDiv {
+#courseLabelDivPlanned, #courseLabelDivCurrent, #courseLabelDivCompleted {
     height: 100px;
     text-align: center;
     padding: 0;
     margin-top: 10px;
+}
+
+#semesterInputMain, #semesterInputModal, #statusInputMain, 
+#statusInputModal, select, #semester, #status  {
+    display: inline-block !important;
+    font-family: 'Patua One', cursive !important;
+    font-size: 19px !important;
+}
+
+#semesterInputMain, #semesterInputModal {
+    width: 165px;
+}
+
+#statusInputMain, #statusInputModal {
+    width: 105px;
 }
 
 .courseName {
@@ -269,37 +271,11 @@ input[type=number] {
     color: #6d1818;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    height: 80px;
-    width: 100%;
-    text-align: center;
-    color: white;
-    padding-top: 30px;
-    border: solid 2px #17235e;
-    background-color: #1d2c76;
-}
-
-#errorNotifications {
-    padding: 20px;
-    background-color: #bc8d8d;
-    border: solid 2px #6d1818;
-    box-shadow: 4px 4px 6px #6d1818;
+.gradeButton {
+    color: #f0e9ef;
     border-radius: 8px;
-    width: 800px;
-    margin: 40px auto;
-}
-
-.errorMessage {
-    color: #6d1818;
-}
-
-#errorLink {
-    color: #631f57;
-}
-
-#gradeButton {
+    outline: none !important;
+    font-size: 18px;
     padding: 3px 0px;
     margin-top: -5px;
     min-width: 50px !important;
@@ -325,20 +301,6 @@ footer {
     width: 30px;
     height: 40px;
     background-color: transparent;
-}
-
-#semesterInput, #statusInput, select, #semester, #status  {
-    display: inline-block !important;
-    font-family: 'Patua One', cursive !important;
-    font-size: 19px !important;
-}
-
-#semesterInput {
-    width: 165px;
-}
-
-#statusInput {
-    width: 105px;
 }
 
 .modal-content {
@@ -430,7 +392,35 @@ footer {
     color: #a15f5f;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding-top: 30px;
+    border: solid 2px #17235e;
+    background-color: #1d2c76;
+}
 
+#errorNotifications {
+    padding: 20px;
+    background-color: #bc8d8d;
+    border: solid 2px #6d1818;
+    box-shadow: 4px 4px 6px #6d1818;
+    border-radius: 8px;
+    width: 800px;
+    margin: 40px auto;
+}
+
+.errorMessage {
+    color: #6d1818;
+}
+
+#errorLink {
+    color: #631f57;
+}
 
 
 

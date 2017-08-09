@@ -2,8 +2,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var exphbs = require('express-handlebars');
-var routes = require('./controllers/courses_controller.js');
+var exphbs = require("express-handlebars");
+var routes = require("./controllers/courses_controller.js");
 var db = require("./models");
 
 var port = process.env.PORT || 3000;

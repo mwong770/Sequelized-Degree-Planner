@@ -8,6 +8,14 @@ var router = express.Router();
 var semesterValue;
 var semesterCode;
 
+// returns sum of credits per status 
+function getTotalCredits (courses) {
+    return courses.reduce(function sumCredits (sum, course) {
+        return sum + course.credits;
+    }, 0);
+}
+
+// converts semester and year to a code for sorting
 function getSemesterCode(semester, year, res) {
     if (semester === "Spring") {
         semesterValue = 1;
@@ -29,43 +37,30 @@ router.get("/", function(req, res) {
     db.Courses.findAll({
             // orders data asc by semester
             order: [["semester_code", "ASC"]]
-        }).then(function(data) {
-            // puts data in arrays by status
-            var plannedArray = [];
-            var currentArray = [];
-            var completedArray = [];
-            for (var i = 0; i < data.length; i++) { 
-                if (data[i].status === "planned") {
-                    plannedArray.push(data[i]);
-                }
-                if (data[i].status === "current") {
-                    currentArray.push(data[i]);
-                }
-                if (data[i].status === "completed") {
-                    completedArray.push(data[i]);
-                }
+    }).then(function(data) {
+        // puts data in arrays by status
+        var plannedArray = [];
+        var currentArray = [];
+        var completedArray = [];
+        for (var i = 0; i < data.length; i++) { 
+            if (data[i].status === "planned") {
+                plannedArray.push(data[i]);
             }
-            // puts sum of each status in variables
-            var plannedSum = 0;
-            var currentSum = 0;
-            var completedSum = 0;
-            for (var i = 0; i < plannedArray.length; i++) {
-                plannedSum += plannedArray[i].credits;
+            if (data[i].status === "current") {
+                currentArray.push(data[i]);
             }
-            for (var i = 0; i < currentArray.length; i++) {
-                currentSum += currentArray[i].credits;
+            if (data[i].status === "completed") {
+                completedArray.push(data[i]);
             }
-            for (var i = 0; i < completedArray.length; i++) {
-                completedSum += completedArray[i].credits;
-            }
+        }
         // renders index with status arrays and status sums
         res.render("index", {
             planned: plannedArray,
             current: currentArray,
             completed: completedArray,
-            plannedSum: plannedSum,
-            currentSum: currentSum,
-            completedSum: completedSum
+            plannedSum: getTotalCredits(plannedArray),
+            currentSum: getTotalCredits(currentArray),
+            completedSum: getTotalCredits(completedArray)
         });
     });
 });
@@ -73,12 +68,11 @@ router.get("/", function(req, res) {
 // posts user inputs to db
 router.post("/", function(req, res) {
 
-    // assigns N/A to grade if grade empty on form
-    // sends " " to db otherwise, which is not seen as empty
+    // assigns N/A to grade if grade empty on form to prevent sending " ", which is not seen as empty
     if (req.body.grade !== "") {
          
         var grade = req.body.grade;
-        // capitalizes first letter of grade
+        // makes grade titlecase
         grade = grade.charAt(0).toUpperCase() + grade.slice(1);
 
     } else 
@@ -86,6 +80,7 @@ router.post("/", function(req, res) {
 
     getSemesterCode(req.body.semester, req.body.year, res);
     
+    // adds course info to db
     if (req.body.name !== "") {
         db.Courses.create({
             semester: req.body.semester,
@@ -103,7 +98,7 @@ router.post("/", function(req, res) {
     };
 });
 
-// changes course category in db 
+// changes course status in db 
 router.put("/status", function(req, res) {
     db.Courses.update(
         {
@@ -120,7 +115,7 @@ router.put("/status", function(req, res) {
     });
 });
 
-// changes course grade in db 
+// changes course grade and status in db 
 router.put("/grade", function(req, res) {
     var grade = req.body.grade;
     grade = grade.charAt(0).toUpperCase() + grade.slice(1);
@@ -140,6 +135,7 @@ router.put("/grade", function(req, res) {
     });
 });
 
+// changes course grade in db 
 router.put("/newgrade", function(req, res) {
     var grade = req.body.grade;
     grade = grade.charAt(0).toUpperCase() + grade.slice(1);

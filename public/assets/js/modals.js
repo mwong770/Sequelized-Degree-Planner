@@ -11,18 +11,18 @@ function editForm() {
     var courseSemester = $(this).parent().parent().find(".displaySemester").text();;
     var courseYear = $(this).parent().parent().find(".displayYear").text();
     var courseCredits = $(this).parent().parent().find(".displayCredits").text();
-    var gradeEntry = $(this).parent().parent().find("#gradeButton").text();
+    var gradeEntry = $(this).parent().parent().find(".gradeButton").text();
 
     if (gradeEntry === "") {
         gradeEntry = "N/A"
     }
 
     $(".idValue").attr("value", id);
-	$("#courseName2").attr("placeholder", courseName);
-    $("#courseSemester2").attr("placeholder", courseSemester);
-    $("#gradeEntry2").attr("placeholder", gradeEntry);
- 	$("#courseYear2").attr("placeholder", courseYear);
-    $("#courseCredits2").attr("placeholder", courseCredits);
+	$("#modalCourseName").attr("placeholder", courseName);
+    $("#modalCourseSemester").attr("placeholder", courseSemester);
+    $("#modalGradeEntry").attr("placeholder", gradeEntry);
+ 	$("#modalCourseYear").attr("placeholder", courseYear);
+    $("#modalCourseCredits").attr("placeholder", courseCredits);
     
 }
 

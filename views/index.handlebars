@@ -8,10 +8,10 @@
 			</div>
 			<div class="col-xs-12 text-center">
 				<div>
-					<form class="courseEntryForm" id="courseEntryForm" action="/" method="POST">
+					<form action="/" method="POST">
 						<div class="form-group">
-							<input required="true" type="text" id="courseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
-							<div class="input-field" required="true" aria-required="true" id="semesterInput">
+							<input required="true" type="text" id="courseNameMainInput" name="name" placeholder="Ex. Calculus 1 - MATH 271">
+							<div class="input-field" required="true" aria-required="true" id="semesterInputMain">
 		                        <select required="true" class="form-control" name="semester" id="semester">
 		                            <option id="option" required="true" value="" disabled selected> Select Semester </option>
 		                            <option name="semester" value="Fall"> Fall </option>
@@ -21,7 +21,7 @@
 		                    </div>
 							<input required="true" type="number" id="courseYear" name="year" placeholder="Ex. 2018">
 							<input required="true" type="number" id="courseCredits" name="credits" placeholder="(credits) Ex. 3">
-							<div class="input-field" name="status" aria-required="true" id="statusInput">
+							<div class="input-field" name="status" aria-required="true" id="statusInputMain">
 		                        <select required="true" class="form-control" name="status" id="status">
 		                            <option value="" disabled selected hidden> Select Status </option>
 		                            <option selected="selected" name="status" value="planned"> Planned </option>
@@ -46,8 +46,8 @@
 					{{#each planned}}
 						
 							<div class="plannedCourses">
-								<div class="row" id="plannedRow">
-									<div class="col-sm-12" id="courseLabelDiv">
+								<div class="row">
+									<div class="col-sm-12" id="courseLabelDivPlanned">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
 												<p class="courseName plannedCourse"> {{this.course_name}} </p>
@@ -71,13 +71,13 @@
 												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton plannedDeleteButton plannedButton btn"> Delete </button>
+														<button type="submit" class="plannedDeleteButton plannedButton btn"> Delete </button>
 												</form>
 											</div>
 										</div>
 										<form>
 											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse plannedCourse btn currentRtBtn editTrigger" data-toggle="modal" data-target="#editCourse"> <i class="plannedEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+											<button data-id="{{this.id}}" type="button" class="editButton editCourse plannedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="plannedEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
 										</form>
 									</div>
 								</div>
@@ -95,8 +95,8 @@
 					{{#each current}}
 						
 							<div class="currentCourses">
-								<div class="row" id="currentRow">
-									<div class="col-sm-12" id="courseLabelDiv">
+								<div class="row">
+									<div class="col-sm-12" id="courseLabelDivCurrent">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
 												<p class="courseName currentCourse"> {{this.course_name}} </p>
@@ -116,17 +116,15 @@
 												<form class="currentRtBtn" action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 														<input type="hidden" name="id" value="{{this.id}}">
-														<button type="submit" class="deleteButton currentDeleteButton currentButton btn"> Delete </button>
+														<button type="submit" class="currentDeleteButton currentButton btn"> Delete </button>
 												</form>
 											</div>
 										</div>
 
 										<form>
 											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse currentCourse btn currentRtBtn editTrigger" data-toggle="modal" data-target="#editCourse"> <i class="currentEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+											<button data-id="{{this.id}}" type="button" class="editButton editCourse currentCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="currentEditBtn glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
 										</form>
-
-
 									</div>
 								</div>
 							</div>
@@ -142,8 +140,8 @@
 					</div>
 					{{#each completed}}
 							<div class="completedCourses">
-								<div class="row" id="completedRow">
-									<div class="col-sm-12" id="courseLabelDiv">
+								<div class="row">
+									<div class="col-sm-12" id="courseLabelDivCompleted">
 										<div class="row classRow courseInfo">
 											<div class="col-sm-12">
 												<p class="courseName completedCourse"> {{this.course_name}} </p>
@@ -156,21 +154,21 @@
 											</div>
 										</div>
 										<div class="row" class="classRow">
-											<div id="gradeDiv" class="col-sm-6">
-												<div id="gradeButton" class="gradeButton completedGradeButton currentLftBtn"> {{this.grade}} </div>
+											<div class="col-sm-6">
+												<div class="gradeButton completedGradeButton currentLftBtn"> {{this.grade}} </div>
 											</div>
 											<div class="col-sm-6">
 												<form action="/delete?_method=DELETE" method="POST">
 													<input type="hidden" name="completed" value="0">
 													<input type="hidden" name="id" value="{{this.id}}">
-													<button type="submit" class="deleteButton completedButton completedDeleteButton btn currentRtBtn"> Delete </button>
+													<button type="submit" class="completedButton completedDeleteButton btn currentRtBtn"> Delete </button>
 												</form>
 										
 											</div>
 										</div>
 										<form>
 											<input type="hidden" name="id" value="{{this.id}}">
-											<button data-id="{{this.id}}" type="button" class="editButton editCourse completedCourse btn currentRtBtn  editTrigger" data-toggle="modal" data-target="#editCourse"> <i class="glyphicon glyphicon-pencil completedEditBtn" aria-hidden="true"></i></button>
+											<button data-id="{{this.id}}" type="button" class="editButton editCourse completedCourse btn currentRtBtn" data-toggle="modal" data-target="#editCourse"> <i class="glyphicon glyphicon-pencil completedEditBtn" aria-hidden="true"></i></button>
 										</form>
 									</div>
 								</div>
@@ -191,7 +189,7 @@
 		        <div class="modal-body">
 		          	<p> Please enter your grade. </p>
 		          	<p class="noGrade"> If no grade is given, you can enter N/A </p>
-		          	<form class="gradeEntryForm" id="gradeEntryForm" action="/grade?_method=PUT" method="POST">
+		          	<form class="gradeEntryForm" action="/grade?_method=PUT" method="POST">
 						<div class="form-group">
 							<input type="hidden" name="id" class="idValue">
 							<input required="true" type="text" id="gradeEntryInput" name="grade" placeholder="Ex. B+">
@@ -208,24 +206,24 @@
 	    <div class="modal-dialog">
 	      <div class="modal-content">
 		        <div class="modal-header">
-		          	<button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+		          	<button type="button" class="close" data-dismiss="modal">&times;</button>
 		          	<h2 class="modal-title"> Course Update </h2>
 		        </div>
 		        <div class="modal-body">
 		          	<p> Please make any desired changes. </p>
-		          	<form class="editEntryForm" id="editEntryForm" action="/name?_method=PUT" method="POST">
+		          	<form action="/name?_method=PUT" method="POST">
 						<div class="form-group">
 							<label> Edit Course Name </label>
 							<input type="hidden" name="id" class="idValue">
-							<input required="true" type="text" id="courseName2" name="name" placeholder="Ex. Calculus 1 - MATH 271">
+							<input required="true" type="text" id="modalCourseName" name="name" placeholder="Ex. Calculus 1 - MATH 271">
 							<button class="btn btn-lg editCourse editSubmit" id="editCourse" type="submit"> <i class="glyphicon glyphicon-send" aria-hidden="true"></i> </button> 
 						</div>
 					</form>	
-					<form class="editEntryForm" id="editEntryForm" action="/semester?_method=PUT" method="POST">
+					<form action="/semester?_method=PUT" method="POST">
 						<div class="form-group">
 							<label> Edit Course Semester and Status </label>
 							<input type="hidden" name="id" class="idValue">
-							<div class="input-field" required="true" aria-required="true" id="semesterInput">
+							<div class="input-field" required="true" aria-required="true" id="semesterInputModal">
 		                        <select required="true" class="form-control" name="semester">
 		                            <option required="true" value="" disabled selected> Select Semester </option>
 		                            <option selected="selected" name="semester" value="Fall"> Fall </option>
@@ -233,10 +231,10 @@
 		                            <option name="semester" value="Summer"> Summer </option>
 		                        </select>
 		                    </div>
-							<input class="yearForm" required="true" type="number" id="courseYear2" name="year" placeholder="Ex. 2018">
+							<input class="yearForm" required="true" type="number" id="modalCourseYear" name="year" placeholder="Ex. 2018">
 						</div>
 						<div class="form-group" name="status">
-							<div class="input-field statusForm" name="status" aria-required="true" id="statusInput">
+							<div class="input-field" name="status" aria-required="true" id="statusInputModal">
 		                        <select required="true" class="form-control" name="status">
 		                            <option required="true" value="" disabled selected> Select Status </option>
 		                            <option name="status" value="planned"> Planned </option>
@@ -247,19 +245,19 @@
 		                    <button class="btn btn-lg editCourse editSubmit statusSubmit" id="editCourse" type="submit"> <i class="glyphicon glyphicon-send" aria-hidden="true"></i> </button>
 		                </div>
 					</form>	
-					<form class="editEntryForm" id="editEntryForm" action="/credits?_method=PUT" method="POST">
+					<form action="/credits?_method=PUT" method="POST">
 						<div class="form-group">
 							<label> Edit Course Credits </label>
 							<input type="hidden" name="id" class="idValue">
-							<input required="true" type="number" id="courseCredits2" name="credits" placeholder="(credits) Ex. 3">
+							<input required="true" type="number" id="modalCourseCredits" name="credits" placeholder="(credits) Ex. 3">
 							<button class="btn btn-lg editCourse editSubmit" id="editCourse" type="submit"> <i class="glyphicon glyphicon-send" aria-hidden="true"></i> </button>
 						</div>
 					</form>	
-					<form class="editEntryForm" id="editEntryForm" action="/newgrade?_method=PUT" method="POST">
+					<form action="/newgrade?_method=PUT" method="POST">
 						<div class="form-group">
 							<label> Edit Course Grade </label>
 							<input type="hidden" name="id" class="idValue">
-							<input required="true" type="text" id="gradeEntry2" name="grade" placeholder="N/A">
+							<input required="true" type="text" id="modalGradeEntry" name="grade" placeholder="N/A">
 							<button class="btn btn-lg editCourse editSubmit" type="submit"> <i class="glyphicon glyphicon-send" aria-hidden="true"></i> </button>
 						</div>
 					</form>
