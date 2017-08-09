@@ -54,7 +54,8 @@ A Node.js and MySQL degree planner that lets students organize courses by semest
 
 ## <a name="mysql-configuration"></a> :bar_chart: MySQL Configuration 
 
-* Create a file called config.json and enter the following code: 
+* Create a folder called config with a file called config.json
+* Enter the following code in the config.json file: 
 
 ![screenshot of configuration file](/screenshots/config_json.png)
 
@@ -71,7 +72,7 @@ A Node.js and MySQL degree planner that lets students organize courses by semest
 
 ## <a name="features"></a> :boom: Features
 
-* Users can enter course information -- course name, semester took/will take, year took/will take, credit hours, whether planning on taking the course, currently registered for the course, or completed the course (optional - defaults to planned), and the grade received (optional - defaults to N/A if course completed)
+* Users can enter course information -- course name, semester took/will take, year took/will take, credit hours, whether planning on taking the course, currently registered for the course, or completed the course (optional - defaults to planned), and the grade received (optional - defaults to N/A, if course completed)
 * Course information entered is displayed under Planned, Registered, or Completed categories
 * Courses under each category are displayed in ascending order by semester/year 
 * Credit totals are displayed for Planned, Registered, and Completed categories
